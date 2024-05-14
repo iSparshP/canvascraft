@@ -1,30 +1,31 @@
-import React, { useState } from 'react'
+import React, { useContext} from 'react'
 import classes from "./index.module.css"
 import cx from "classnames";
 
-import {
-  FaSlash,
-} from "react-icons/fa";
+import { FaSlash } from "react-icons/fa";
 
 import { LuRectangleHorizontal } from "react-icons/lu";
+import { TOOL_ITEMS } from "../../constants";
+import BoardContext from "../../store/board-context";
 
 const Toolbar = () => {
-  const [activeToolItem, setActiveToolItem] = useState("A");
+  const {activeToolItem, handleToolItemClick } = useContext(BoardContext);
+
   return (
     <div className={classes.container}>
       <div 
         className={
-          cx(classes.toolItem, {[classes.active]: activeToolItem==="A"})
+          cx(classes.toolItem, {[classes.active]: activeToolItem===TOOL_ITEMS.LINE})
         }
-        onClick={()=>setActiveToolItem("A")}
+        onClick={()=>handleToolItemClick(TOOL_ITEMS.LINE)}
       >
         <FaSlash />
       </div>
       <div
         className={
-          cx(classes.toolItem, {[classes.active]: activeToolItem==="B"})
+          cx(classes.toolItem, {[classes.active]: activeToolItem===TOOL_ITEMS.RECTANGLE})
         }
-        onClick={()=>setActiveToolItem("B")}
+        onClick={()=>handleToolItemClick(TOOL_ITEMS.RECTANGLE)}
       >
         <LuRectangleHorizontal />
       </div>
