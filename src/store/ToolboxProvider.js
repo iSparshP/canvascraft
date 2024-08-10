@@ -46,6 +46,10 @@ const initialToolboxState = {
     stroke: COLORS.BLACK,
     size: 1,
   },
+  [TOOL_ITEMS.TEXT]: {
+    stroke: COLORS.BLACK,
+    size: 32,
+  },
 };
 
 const ToolboxProvider = ({ children }) => {
@@ -56,7 +60,7 @@ const ToolboxProvider = ({ children }) => {
 
   const changeStrokeHandler = (tool, stroke) => {
     dispatchToolboxAction({
-      type:  TOOLBOX_ACTIONS.CHANGE_STROKE,
+      type: TOOLBOX_ACTIONS.CHANGE_STROKE,
       payload: {
         tool,
         stroke,
@@ -83,7 +87,6 @@ const ToolboxProvider = ({ children }) => {
       },
     });
   };
-
 
   const toolboxContextValue = {
     toolboxState,
